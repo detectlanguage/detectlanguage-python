@@ -70,6 +70,14 @@ Result is array of detections in the same order as the texts were passed.
 
 Array of language codes and names.
 
+### Secure mode
+
+If you are passing sensitive information to the Detect Language API you can enable SSL.
+
+SSL usage adds data and processing overhead. Please use only if encryption is really necessary.
+
+    detectlanguage.configuration.secure = True
+
 ## Contribution
 
 You are welcome to patch and send GitHub pull requests.

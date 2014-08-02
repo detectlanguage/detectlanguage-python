@@ -25,7 +25,10 @@ class Client:
 		return json
 
 	def url(self, path):
-		return "http://%s/%s/%s" % (self.configuration.host, self.configuration.api_version, path)
+		return "%s://%s/%s/%s" % (self.protocol(), self.configuration.host, self.configuration.api_version, path)
+
+	def protocol(self):
+		return 'https' if self.configuration.secure else 'http'
 
 	def data(self, payload):
 		payload.update({ 'key': self.configuration.api_key })

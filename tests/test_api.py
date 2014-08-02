@@ -33,6 +33,12 @@ class TestApi(utils.TestCase):
 		result = detectlanguage.languages()
 		assert { 'code': 'en', 'name': 'ENGLISH' } in result
 
+	def test_secure(self):
+		detectlanguage.configuration.secure = True
+		result = detectlanguage.detect("Hello world")
+		eq_('en', result[0]['language'])
+		detectlanguage.configuration.secure = False
+
 class TestApiErrors(utils.TestCase):
 	@raises(detectlanguage.DetectLanguageError)
 	def test_invalid_key(self):
