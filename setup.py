@@ -6,10 +6,17 @@ try:
 except ImportError:
     from distutils.core import setup
 
+with open('detectlanguage/__init__.py', 'r') as fd:
+    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
+                        fd.read(), re.MULTILINE).group(1)
+
+if not version:
+    raise RuntimeError('Cannot find version information')
+
 setup(
     name = 'detectlanguage',
     packages = ['detectlanguage'],
-    version = detectlanguage.__version__,
+    version = version,
     description = 'Language Detection API Client',
     author = 'Laurynas Butkus',
     author_email = 'info@detectlanguage.com',
