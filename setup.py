@@ -1,5 +1,4 @@
 import os
-import detectlanguage
 
 try:
     from setuptools import setup
