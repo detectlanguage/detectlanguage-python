@@ -1,22 +1,12 @@
-import os
-import re
+#!/usr/bin/env python
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
-with open('detectlanguage/__init__.py', 'r') as fd:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
-                        fd.read(), re.MULTILINE).group(1)
-
-if not version:
-    raise RuntimeError('Cannot find version information')
+from setuptools.depends import get_module_constant
+from setuptools import setup
 
 setup(
     name = 'detectlanguage',
     packages = ['detectlanguage'],
-    version = version,
+    version = get_module_constant('detectlanguage', '__version__'),
     description = 'Language Detection API Client',
     author = 'Laurynas Butkus',
     author_email = 'info@detectlanguage.com',
