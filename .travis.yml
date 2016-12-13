@@ -1,13 +1,16 @@
 language: python
 python:
-  - 2.6
-  - 2.7
-  - 3.2
-  - 3.3
+- 2.6
+- 2.7
+- 3.2
+- 3.3
 install:
-  - if [[ $TRAVIS_PYTHON_VERSION == 2.6 ]]; then pip install --use-mirrors importlib unittest2; fi
-  - pip install -r requirements.txt
-  - pip install -r test-requirements.txt
-  - python setup.py develop
-script: 
-  - nosetests
+- if [[ $TRAVIS_PYTHON_VERSION == 2.6 ]]; then pip install importlib unittest2; fi
+- pip install -r requirements.txt
+- pip install -r test-requirements.txt
+- python setup.py develop
+script:
+- nosetests
+env:
+  global:
+    secure: OEf+n4gbaDOfj7kqVjA3sjkIYtIsfEv6K2/5RejYxMoaAHEOR5r79HatWa4D2gmJxNZa+Biro6aep17opbBhMY3FAB/RK9dqW966YMpiOIgI5CF6lQeleOik61ByFYgJgp6S4pNS0wD9hOSN42sK0AX4f67m7KlsTAyFkV7ZgQo=

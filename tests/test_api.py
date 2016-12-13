@@ -3,10 +3,11 @@
 from . import utils
 from nose.tools import *
 import detectlanguage
+import os
 
 class TestApi(utils.TestCase):
 	def setUp(self):
-		detectlanguage.configuration.api_key = '93dfb956a294140a4370a09584af2ef6'
+		detectlanguage.configuration.api_key = os.environ['DETECTLANGUAGE_API_KEY']
 		
 	def test_simple_detect(self):
 		result = detectlanguage.simple_detect("Hello world")
