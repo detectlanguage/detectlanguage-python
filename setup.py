@@ -13,7 +13,7 @@ setup(
     url = 'https://github.com/detectlanguage/detectlanguage-python',
     download_url = 'https://github.com/detectlanguage/detectlanguage-python',
     keywords = ['language', 'identification', 'detection', 'api', 'client'],
-    install_requires= ['requests>=1.2.0'],
+    install_requires= ['requests>=2.4.2'],
     classifiers = [],
     license = 'MIT',
 )

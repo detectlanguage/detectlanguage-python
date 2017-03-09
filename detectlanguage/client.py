@@ -11,7 +11,7 @@ class Client:
 		return self.handle_response(r)
 
 	def post(self, path, payload):
-		r = requests.post(self.url(path), data=self.data(payload), headers = self.headers())
+		r = requests.post(self.url(path), json=self.data(payload), headers = self.headers())
 		return self.handle_response(r)
 
 	def handle_response(self, r):
@@ -21,7 +21,7 @@ class Client:
 			raise DetectLanguageError(json['error']['message'])
 
 		r.raise_for_status()
-		
+
 		return json
 
 	def url(self, path):
