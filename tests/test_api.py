@@ -8,7 +8,7 @@ import os
 class TestApi(utils.TestCase):
 	def setUp(self):
 		detectlanguage.configuration.api_key = os.environ['DETECTLANGUAGE_API_KEY']
-		
+
 	def test_simple_detect(self):
 		result = detectlanguage.simple_detect("Hello world")
 		eq_('en', result)
@@ -25,6 +25,10 @@ class TestApi(utils.TestCase):
 		result = detectlanguage.detect(["Hello world", "Ėjo ežiukas"])
 		eq_('en', result[0][0]['language'])
 		eq_('lt', result[1][0]['language'])
+
+	def test_detect_array_with_brackets(self):
+		result = detectlanguage.detect(["[2]Hello world", "Ėjo ežiukas"])
+		eq_(2, len(result))
 
 	def test_user_status(self):
 		result = detectlanguage.user_status()
@@ -45,4 +49,3 @@ class TestApiErrors(utils.TestCase):
 	def test_invalid_key(self):
 		detectlanguage.configuration.api_key = 'invalid'
 		detectlanguage.detect("Hello world")
-		
