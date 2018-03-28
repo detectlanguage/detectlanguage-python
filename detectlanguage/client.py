@@ -7,11 +7,11 @@ class Client:
 		self.configuration = configuration
 
 	def get(self, path, payload = {}):
-		r = requests.get(self.url(path), params=self.data(payload), headers = self.headers())
+		r = requests.get(self.url(path), params=payload, headers = self.headers())
 		return self.handle_response(r)
 
 	def post(self, path, payload):
-		r = requests.post(self.url(path), json=self.data(payload), headers = self.headers())
+		r = requests.post(self.url(path), json=payload, headers = self.headers())
 		return self.handle_response(r)
 
 	def handle_response(self, r):
@@ -30,9 +30,8 @@ class Client:
 	def protocol(self):
 		return 'https' if self.configuration.secure else 'http'
 
-	def data(self, payload):
-		payload.update({ 'key': self.configuration.api_key })
-		return payload
-
 	def headers(self):
-		return { 'User-Agent': self.configuration.user_agent }
+		return {
+			'User-Agent': self.configuration.user_agent,
+			'Authorization': 'Bearer ' + self.configuration.api_key,
+		}
