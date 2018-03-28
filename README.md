@@ -4,7 +4,7 @@ Detect Language API Python Client [![Build Status](https://api.travis-ci.org/det
 Detects language of given text. Returns detected language codes and scores.
 
 Before using Detect Language API client you have to setup your personal API key.
-You can get it by signing up at http://detectlanguage.com
+You can get it by signing up at https://detectlanguage.com
 
 ## Installation
 
@@ -15,6 +15,9 @@ You can get it by signing up at http://detectlanguage.com
     import detectlanguage
 
     detectlanguage.configuration.api_key = "YOUR API KEY"
+
+    # Enable secure mode (SSL) if you are passing sensitive data
+    # detectlanguage.configuration.secure = True
 
 ## Usage
 
@@ -49,7 +52,7 @@ To use batch detection just pass array of texts to `detect` method.
 
 Result is array of detections in the same order as the texts were passed.
 
-    [ [ {'isReliable': True, 'confidence': 12.04, 'language': 'es'} ], 
+    [ [ {'isReliable': True, 'confidence': 12.04, 'language': 'es'} ],
       [ {'isReliable': True, 'confidence': 9.38, 'language': 'lt'} ] ]
 
 ### Getting your account status
@@ -58,8 +61,8 @@ Result is array of detections in the same order as the texts were passed.
 
 #### Result
 
-    { 'status': 'ACTIVE', 'daily_requests_limit': 5000, 'daily_bytes_limit': 1048576, 
-      'bytes': 3151, 'plan': 'FREE', 'date': '2014-03-29', 'requests': 263, 
+    { 'status': 'ACTIVE', 'daily_requests_limit': 5000, 'daily_bytes_limit': 1048576,
+      'bytes': 3151, 'plan': 'FREE', 'date': '2014-03-29', 'requests': 263,
       'plan_expires': None }
 
 ### Getting list detectable languages
@@ -69,14 +72,6 @@ Result is array of detections in the same order as the texts were passed.
 #### Result
 
 Array of language codes and names.
-
-### Secure mode
-
-If you are passing sensitive information to the Detect Language API you can enable SSL.
-
-SSL usage adds data and processing overhead. Please use only if encryption is really necessary.
-
-    detectlanguage.configuration.secure = True
 
 ## Contribution
 
