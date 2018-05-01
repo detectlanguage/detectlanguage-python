@@ -1,5 +1,8 @@
-Detect Language API Python Client [![Build Status](https://api.travis-ci.org/detectlanguage/detectlanguage-python.png)](http://travis-ci.org/detectlanguage/detectlanguage-python)
+Detect Language API Python Client
 ========
+
+[![PyPI](https://img.shields.io/pypi/v/detectlanguage.svg)](https://pypi.org/project/detectlanguage/)
+[![Build Status](https://api.travis-ci.org/detectlanguage/detectlanguage-python.svg)](http://travis-ci.org/detectlanguage/detectlanguage-python)
 
 Detects language of given text. Returns detected language codes and scores.
 
