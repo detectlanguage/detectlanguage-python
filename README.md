@@ -11,37 +11,48 @@ You can get it by signing up at https://detectlanguage.com
 
 ## Installation
 
-    pip install detectlanguage
+```
+pip install detectlanguage
+```
 
 ### Configuration
 
-    import detectlanguage
+```python
+import detectlanguage
 
-    detectlanguage.configuration.api_key = "YOUR API KEY"
+detectlanguage.configuration.api_key = "YOUR API KEY"
 
-    # Enable secure mode (SSL) if you are passing sensitive data
-    # detectlanguage.configuration.secure = True
+# Enable secure mode (SSL) if you are passing sensitive data
+# detectlanguage.configuration.secure = True
+```
 
 ## Usage
 
 ### Language detection
 
-    detectlanguage.detect("Buenos dias señor")
+```python
+detectlanguage.detect("Buenos dias señor")
+```
 
 #### Result
 
-    [{'isReliable': True, 'confidence': 12.04, 'language': 'es'}]
+```python
+[{'isReliable': True, 'confidence': 12.04, 'language': 'es'}]
+```
 
 ### Simple language detection
 
 If you need just a language code you can use `simple_detect`. It returns just the language code.
 
-    detectlanguage.simple_detect("Buenos dias señor")
+```python
+detectlanguage.simple_detect("Buenos dias señor")
+```
 
 #### Result
 
-    'es'
-
+```python
+'es'
+```
 
 ### Batch detection
 
@@ -49,28 +60,38 @@ It is possible to detect language of several texts with one request.
 This method is faster than doing one request per text.
 To use batch detection just pass array of texts to `detect` method.
 
-    detectlanguage.detect(["Buenos dias señor", "Labas rytas"])
+```python
+detectlanguage.detect(["Buenos dias señor", "Labas rytas"])
+```
 
 #### Result
 
 Result is array of detections in the same order as the texts were passed.
 
-    [ [ {'isReliable': True, 'confidence': 12.04, 'language': 'es'} ],
-      [ {'isReliable': True, 'confidence': 9.38, 'language': 'lt'} ] ]
+```python
+[ [ {'isReliable': True, 'confidence': 12.04, 'language': 'es'} ],
+  [ {'isReliable': True, 'confidence': 9.38, 'language': 'lt'} ] ]
+```
 
 ### Getting your account status
 
-    detectlanguage.user_status()
+```python
+detectlanguage.user_status()
+```
 
 #### Result
 
-    { 'status': 'ACTIVE', 'daily_requests_limit': 5000, 'daily_bytes_limit': 1048576,
-      'bytes': 3151, 'plan': 'FREE', 'date': '2014-03-29', 'requests': 263,
-      'plan_expires': None }
+```python
+{ 'status': 'ACTIVE', 'daily_requests_limit': 5000, 'daily_bytes_limit': 1048576,
+  'bytes': 3151, 'plan': 'FREE', 'date': '2014-03-29', 'requests': 263,
+  'plan_expires': None }
+```
 
 ### Getting list detectable languages
 
-    detectlanguage.languages()
+```python
+detectlanguage.languages()
+```
 
 #### Result
 
@@ -82,9 +103,9 @@ You are welcome to patch and send GitHub pull requests.
 
 ### Testing
 
-    $ pip install -r requirements.txt
-    $ pip install -r test-requirements.txt
-    $ nosetests
+    pip install -r requirements.txt
+    pip install -r test-requirements.txt
+    nosetests
 
 ## License
 
