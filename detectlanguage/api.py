@@ -13,4 +13,3 @@ def user_status():
 
 def languages():
 	return detectlanguage.client.get('languages')
-

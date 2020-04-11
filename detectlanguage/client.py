@@ -1,6 +1,12 @@
 import requests
 
 from .exceptions import *
+from requests.exceptions import HTTPError
+
+try:
+    from json.decoder import JSONDecodeError
+except ImportError:
+    JSONDecodeError = ValueError
 
 class Client:
 	def __init__(self, configuration):
@@ -15,14 +21,25 @@ class Client:
 		return self.handle_response(r)
 
 	def handle_response(self, r):
-		json = r.json()
+		try:
+			r.raise_for_status()
 
-		if 'error' in json:
+			return r.json()
+		except HTTPError as err:
+			self.handle_http_error(r, err)
+		except JSONDecodeError:
+			raise DetectLanguageError("Error decoding response JSON")
+
+	def handle_http_error(self, r, err):
+		try:
+			json = r.json()
+
+			if not 'error' in json:
+				raise DetectLanguageError(err)
+
 			raise DetectLanguageError(json['error']['message'])
-
-		r.raise_for_status()
-
-		return json
+		except JSONDecodeError:
+			raise DetectLanguageError(err)
 
 	def url(self, path):
 		return "%s://%s/%s/%s" % (self.protocol(), self.configuration.host, self.configuration.api_version, path)
