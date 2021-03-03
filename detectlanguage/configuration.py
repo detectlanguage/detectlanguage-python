@@ -6,3 +6,4 @@ class Configuration:
 	host = 'ws.detectlanguage.com'
 	user_agent = 'Detect Language API Python Client ' + detectlanguage.__version__
 	secure = False
+	timeout = 5
