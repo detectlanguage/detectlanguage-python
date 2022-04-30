@@ -2,7 +2,7 @@ Detect Language API Python Client
 ========
 
 [![PyPI version](https://badge.fury.io/py/detectlanguage.svg)](https://badge.fury.io/py/detectlanguage)
-[![Build Status](https://api.travis-ci.org/detectlanguage/detectlanguage-python.svg)](http://travis-ci.org/detectlanguage/detectlanguage-python)
+[![Build Status](https://github.com/detectlanguage/detectlanguage-python/actions/workflows/main.yml/badge.svg)](https://github.com/detectlanguage/detectlanguage-python/actions)
 
 Detects language of given text. Returns detected language codes and scores.
 
