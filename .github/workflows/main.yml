@@ -1,0 +1,26 @@
+name: Build
+on: [push,pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - 2.7
+          - 3.4
+          - 3.5
+          - 3.6
+          - 3.7
+          - 3.8
+    name: Python ${{ matrix.python-version }} sample
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -r requirements.txt
+      - run: pip install -r test-requirements.txt
+      - run: python setup.py develop
+      - env:
+          DETECTLANGUAGE_API_KEY: ${{ secrets.DETECTLANGUAGE_API_KEY }}
+        run: nosetests
