@@ -6,11 +6,11 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - 2.7
-          - 3.6
-          - 3.7
-          - 3.9
-          - 3.10
+          - '2.7'
+          - '3.6'
+          - '3.7'
+          - '3.9'
+          - '3.10'
     name: Python ${{ matrix.python-version }} sample
     steps:
       - uses: actions/checkout@v3
