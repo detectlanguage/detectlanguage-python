@@ -40,7 +40,7 @@ detectlanguage.detect("Dolce far niente")
 [{'language': 'it', 'score': 0.5074}]
 ```
 
-### Simple language detection
+### Simple code detection
 
 If you need just a language code you can use `detect_code`.
 
@@ -85,7 +85,7 @@ detectlanguage.account_status()
   'plan_expires': None }
 ```
 
-### Getting list detectable languages
+### Getting list of supported languages
 
 ```python
 detectlanguage.languages()
@@ -96,16 +96,6 @@ detectlanguage.languages()
 ```python
 [{'code': 'aa', 'name': 'Afar'}, {'code': 'ab', 'name': 'Abkhazian'}, ...]
 ```
-
-## Contribution
-
-You are welcome to patch and send GitHub pull requests.
-
-### Testing
-
-    pip install -r requirements.txt
-    pip install -r test-requirements.txt
-    pytest
 
 ## License
 
