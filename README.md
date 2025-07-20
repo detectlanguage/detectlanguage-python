@@ -15,6 +15,10 @@ You can get it by signing up at https://detectlanguage.com
 pip install detectlanguage
 ```
 
+### Upgrading
+
+When upgrading please check [changelog](CHANGELOG.md) for breaking changes.
+
 ### Configuration
 
 ```python
