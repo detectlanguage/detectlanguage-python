@@ -1,4 +1,4 @@
-__version__ = '1.5.0'
+__version__ = '2.0.0'
 
 from .exceptions import *
 from .configuration import Configuration
