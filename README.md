@@ -105,7 +105,7 @@ You are welcome to patch and send GitHub pull requests.
 
     pip install -r requirements.txt
     pip install -r test-requirements.txt
-    nosetests
+    pytest
 
 ## License
 

@@ -19,6 +19,7 @@ setup(
     download_url = 'https://github.com/detectlanguage/detectlanguage-python',
     keywords = ['language', 'identification', 'detection', 'api', 'client'],
     install_requires= ['requests>=2.4.2'],
+    test_requires= ['pytest>=7.0.0', 'pytest-mock>=3.10.0', 'pytest-cov>=4.0.0'],
     classifiers = [],
     license = 'MIT',
 )
