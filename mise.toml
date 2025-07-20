@@ -5,8 +5,9 @@ _.file = ".env.local"
 _.python.venv = { path = ".venv", create = true }
 
 [tasks]
+install-dev = "pip install -r requirements.txt && pip install -r test-requirements.txt && pip install build"
 test = "pytest"
 test-cov = "pytest --cov=detectlanguage --cov-report=term-missing"
 test-verbose = "pytest -v"
-install-dev = "pip install -r requirements.txt && pip install -r test-requirements.txt"
 console = "python -c \"import detectlanguage; import code; code.interact(local=locals())\""
+build = "python3 -m build"
