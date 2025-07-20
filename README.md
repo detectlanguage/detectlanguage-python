@@ -28,7 +28,7 @@ detectlanguage.configuration.api_key = "YOUR API KEY"
 
 ## Usage
 
-### Language detection
+### Detect language
 
 ```python
 detectlanguage.detect("Dolce far niente")
@@ -40,7 +40,7 @@ detectlanguage.detect("Dolce far niente")
 [{'language': 'it', 'score': 0.5074}]
 ```
 
-### Simple code detection
+### Detect single code
 
 If you need just a language code you can use `detect_code`.
 
@@ -71,7 +71,7 @@ Result is array of detections in the same order as the texts were passed.
 [[{'language': 'it', 'score': 0.5074}], [{'language': 'en', 'score': 0.9098}]]
 ```
 
-### Getting your account status
+### Get your account status
 
 ```python
 detectlanguage.account_status()
@@ -85,7 +85,7 @@ detectlanguage.account_status()
   'plan_expires': None }
 ```
 
-### Getting list of supported languages
+### Get list of supported languages
 
 ```python
 detectlanguage.languages()
