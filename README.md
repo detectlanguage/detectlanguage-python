@@ -23,7 +23,7 @@ import detectlanguage
 detectlanguage.configuration.api_key = "YOUR API KEY"
 
 # You can use proxy if needed
-# detectlanguage.configuration.proxies = {'https': 'https://user:pass@proxy.example.com:8080'}
+# detectlanguage.configuration.proxies = {'https': 'https://user:pass@proxy:8080'}
 ```
 
 ## Usage
@@ -31,37 +31,36 @@ detectlanguage.configuration.api_key = "YOUR API KEY"
 ### Language detection
 
 ```python
-detectlanguage.detect("Buenos dias señor")
+detectlanguage.detect("Dolce far niente")
 ```
 
 #### Result
 
 ```python
-[{'isReliable': True, 'confidence': 12.04, 'language': 'es'}]
+[{'language': 'it', 'score': 0.5074}]
 ```
 
 ### Simple language detection
 
-If you need just a language code you can use `simple_detect`. It returns just the language code.
+If you need just a language code you can use `detect_code`.
 
 ```python
-detectlanguage.simple_detect("Buenos dias señor")
+detectlanguage.detect_code("Dolce far niente")
 ```
 
 #### Result
 
 ```python
-'es'
+'it'
 ```
 
 ### Batch detection
 
 It is possible to detect language of several texts with one request.
 This method is faster than doing one request per text.
-To use batch detection just pass array of texts to `detect` method.
 
 ```python
-detectlanguage.detect(["Buenos dias señor", "Labas rytas"])
+detectlanguage.detect_batch(["Dolce far niente", "Hello world"])
 ```
 
 #### Result
@@ -69,14 +68,13 @@ detectlanguage.detect(["Buenos dias señor", "Labas rytas"])
 Result is array of detections in the same order as the texts were passed.
 
 ```python
-[ [ {'isReliable': True, 'confidence': 12.04, 'language': 'es'} ],
-  [ {'isReliable': True, 'confidence': 9.38, 'language': 'lt'} ] ]
+[[{'language': 'it', 'score': 0.5074}], [{'language': 'en', 'score': 0.9098}]]
 ```
 
 ### Getting your account status
 
 ```python
-detectlanguage.user_status()
+detectlanguage.account_status()
 ```
 
 #### Result
@@ -95,7 +93,9 @@ detectlanguage.languages()
 
 #### Result
 
-Array of language codes and names.
+```python
+[{'code': 'aa', 'name': 'Afar'}, {'code': 'ab', 'name': 'Abkhazian'}, ...]
+```
 
 ## Contribution
 
