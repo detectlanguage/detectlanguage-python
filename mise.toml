@@ -1,0 +1,5 @@
+[tools]
+
+[env]
+_.file = ".env.local"
+_.python.venv = { path = ".venv", create = true }
