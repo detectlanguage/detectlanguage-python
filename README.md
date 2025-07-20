@@ -22,8 +22,8 @@ import detectlanguage
 
 detectlanguage.configuration.api_key = "YOUR API KEY"
 
-# Enable secure mode (SSL) if you are passing sensitive data
-# detectlanguage.configuration.secure = True
+# You can use proxy if needed
+# detectlanguage.configuration.proxies = {'https': 'https://user:pass@proxy.example.com:8080'}
 ```
 
 ## Usage
