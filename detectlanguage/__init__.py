@@ -3,7 +3,7 @@ __version__ = '1.5.0'
 from .exceptions import *
 from .configuration import Configuration
 from .client import Client
-from .api import simple_detect, detect, user_status, languages
+from .api import detect, detect_code, detect_batch, account_status, languages
 
 configuration = Configuration()
 client = Client(configuration)

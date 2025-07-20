@@ -42,10 +42,7 @@ class Client:
 			raise DetectLanguageError(err)
 
 	def url(self, path):
-		return "%s://%s/%s/%s" % (self.protocol(), self.configuration.host, self.configuration.api_version, path)
-
-	def protocol(self):
-		return 'https' if self.configuration.secure else 'http'
+		return "https://%s/%s/%s" % (self.configuration.host, self.configuration.api_version, path)
 
 	def headers(self):
 		return {

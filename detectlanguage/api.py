@@ -1,15 +1,20 @@
 import detectlanguage
 
 def detect(data):
-	result = detectlanguage.client.post('detect', { 'q': data })
-	return result['data']['detections']
+	if isinstance(data, list):
+		raise ValueError('use detect_batch instead for multiple texts')
 
-def simple_detect(data):
+	return detectlanguage.client.post('detect', { 'q': data })
+
+def detect_code(data):
 	result = detect(data)
 	return result[0]['language']
 
-def user_status():
-	return detectlanguage.client.get('user/status')
+def detect_batch(data):
+	return detectlanguage.client.post('detect-batch', { 'q': data })
+
+def account_status():
+	return detectlanguage.client.get('account/status')
 
 def languages():
 	return detectlanguage.client.get('languages')
