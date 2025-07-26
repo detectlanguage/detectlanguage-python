@@ -14,8 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Switched to v3 API which uses updated language detection model
-- ⚠️ `simple_detect` method renamed to `detect_code`
 - ⚠️ `detect` method result fields are `language` and `score`
-- ⚠️ `detect` method no longer accept arrays - use `detect_batch` instead
-- ⚠️ `user_status` method renamed to `account_status`
-- HTTPS is used by default. Removed secure mode configuration.
+
+### Deprecated
+- Calling `detect()` with list argument. Use `detect_batch` instead.
+- `simple_detect()` - Use `detect_code()` instead. Will be removed in a future version.
+- `user_status()` - Use `account_status()` instead. Will be removed in a future version.
+
+### Removed
+- Secure mode configuration. HTTPS is used by default.

@@ -7,7 +7,7 @@ import os
 class TestApi:
 	def setup_method(self):
 		detectlanguage.configuration.api_key = os.environ['DETECTLANGUAGE_API_KEY']
-		
+
 	def test_detect_code(self):
 		result = detectlanguage.detect_code("Hello world")
 		assert result == 'en'
@@ -17,7 +17,7 @@ class TestApi:
 		assert result[0]['language'] == 'en'
 
 	def test_detect_with_array(self):
-		with pytest.raises(ValueError):
+		with pytest.warns(DeprecationWarning, match="use detect_batch"):
 			detectlanguage.detect(["Hello world", "Ėjo ežiukas"])
 
 	def test_detect_unicode(self):
@@ -37,9 +37,18 @@ class TestApi:
 		result = detectlanguage.languages()
 		assert { 'code': 'en', 'name': 'English' } in result
 
+	def test_simple_detect(self):
+		with pytest.warns(DeprecationWarning, match="simple_detect.*deprecated"):
+			result = detectlanguage.simple_detect("Hello world")
+			assert result == 'en'
+
+	def test_user_status(self):
+		with pytest.warns(DeprecationWarning, match="user_status.*deprecated"):
+			result = detectlanguage.user_status()
+			assert result['status'] == 'ACTIVE'
+
 class TestApiErrors:
 	def test_invalid_key(self):
 		detectlanguage.configuration.api_key = 'invalid'
 		with pytest.raises(detectlanguage.DetectLanguageError):
 			detectlanguage.detect("Hello world")
-		
