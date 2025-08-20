@@ -13,11 +13,11 @@ class Client:
 		self.configuration = configuration
 
 	def get(self, path, payload = {}):
-		r = requests.get(self.url(path), params=payload, headers = self.headers(), timeout = self.configuration.timeout)
+		r = requests.get(self.url(path), params=payload, headers = self.headers(), timeout = self.configuration.timeout, proxies = self.configuration.proxies)
 		return self.handle_response(r)
 
 	def post(self, path, payload):
-		r = requests.post(self.url(path), json=payload, headers = self.headers(), timeout = self.configuration.timeout)
+		r = requests.post(self.url(path), json=payload, headers = self.headers(), timeout = self.configuration.timeout, proxies = self.configuration.proxies)
 		return self.handle_response(r)
 
 	def handle_response(self, r):
@@ -42,10 +42,7 @@ class Client:
 			raise DetectLanguageError(err)
 
 	def url(self, path):
-		return "%s://%s/%s/%s" % (self.protocol(), self.configuration.host, self.configuration.api_version, path)
-
-	def protocol(self):
-		return 'https' if self.configuration.secure else 'http'
+		return "https://%s/%s/%s" % (self.configuration.host, self.configuration.api_version, path)
 
 	def headers(self):
 		return {

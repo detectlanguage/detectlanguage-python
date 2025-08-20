@@ -1,48 +1,54 @@
 # -*- coding: utf-8 -*-
 
-from . import utils
-from nose.tools import *
+import pytest
 import detectlanguage
 import os
 
-class TestApi(utils.TestCase):
-	def setUp(self):
+class TestApi:
+	def setup_method(self):
 		detectlanguage.configuration.api_key = os.environ['DETECTLANGUAGE_API_KEY']
-		
-	def test_simple_detect(self):
-		result = detectlanguage.simple_detect("Hello world")
-		eq_('en', result)
+
+	def test_detect_code(self):
+		result = detectlanguage.detect_code("Hello world")
+		assert result == 'en'
 
 	def test_detect(self):
 		result = detectlanguage.detect("Hello world")
-		eq_('en', result[0]['language'])
+		assert result[0]['language'] == 'en'
+
+	def test_detect_with_array(self):
+		with pytest.warns(DeprecationWarning, match="use detect_batch"):
+			detectlanguage.detect(["Hello world", "Ėjo ežiukas"])
 
 	def test_detect_unicode(self):
 		result = detectlanguage.detect("Ėjo ežiukas")
-		eq_('lt', result[0]['language'])
+		assert result[0]['language'] == 'lt'
 
-	def test_detect_array(self):
-		result = detectlanguage.detect(["Hello world", "Ėjo ežiukas"])
-		eq_('en', result[0][0]['language'])
-		eq_('lt', result[1][0]['language'])
+	def test_detect_batch(self):
+		result = detectlanguage.detect_batch(["Hello world", "Ėjo ežiukas"])
+		assert result[0][0]['language'] == 'en'
+		assert result[1][0]['language'] == 'lt'
 
-	def test_user_status(self):
-		result = detectlanguage.user_status()
-		eq_('ACTIVE', result['status'])
+	def test_account_status(self):
+		result = detectlanguage.account_status()
+		assert result['status'] == 'ACTIVE'
 
 	def test_languages(self):
 		result = detectlanguage.languages()
-		assert { 'code': 'en', 'name': 'ENGLISH' } in result
+		assert { 'code': 'en', 'name': 'English' } in result
 
-	def test_secure(self):
-		detectlanguage.configuration.secure = True
-		result = detectlanguage.detect("Hello world")
-		eq_('en', result[0]['language'])
-		detectlanguage.configuration.secure = False
+	def test_simple_detect(self):
+		with pytest.warns(DeprecationWarning, match="simple_detect.*deprecated"):
+			result = detectlanguage.simple_detect("Hello world")
+			assert result == 'en'
 
-class TestApiErrors(utils.TestCase):
-	@raises(detectlanguage.DetectLanguageError)
+	def test_user_status(self):
+		with pytest.warns(DeprecationWarning, match="user_status.*deprecated"):
+			result = detectlanguage.user_status()
+			assert result['status'] == 'ACTIVE'
+
+class TestApiErrors:
 	def test_invalid_key(self):
 		detectlanguage.configuration.api_key = 'invalid'
-		detectlanguage.detect("Hello world")
-		
+		with pytest.raises(detectlanguage.DetectLanguageError):
+			detectlanguage.detect("Hello world")
